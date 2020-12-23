@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: "jdbc:h2:mem:testdb"
+    username: "sa"
+    password: ""
+    initialization-mode: always
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    show-sql: true # Configuration to print the JPA query
+    hibernate:
+      physical-naming-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # Configuration for conversion camelCase to snake_case.
