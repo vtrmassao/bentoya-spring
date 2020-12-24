@@ -4,13 +4,13 @@ import javax.persistence.*
 
 @Entity
 data class Product(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int,
-
-        @ManyToOne
-        val name: Stock,
+        @ManyToOne(cascade = [CascadeType.ALL])
+        val stock: Stock,
 
         @Column(nullable = false)
         val quantity: Int,
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Int? = null,
 )

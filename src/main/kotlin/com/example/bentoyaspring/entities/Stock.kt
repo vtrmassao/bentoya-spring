@@ -1,21 +1,22 @@
 package com.example.bentoyaspring.entities
 
 import com.example.bentoyaspring.MenuItems
+import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 import javax.persistence.*
 
 @Entity
 data class Stock(
         @Id
-        @Enumerated(EnumType.STRING)
-        val name: MenuItems,
+        val id: String,
 
         @Column
-        val quantity: Int,
+        val quantity: Int? = null,
 
         @Column
-        val value: Double,
+        val value: Double? = null,
 
         @Column
-        val updatedAt: Date,
+        @UpdateTimestamp
+        val updatedAt: Date? = null,
 )

@@ -1,9 +1,7 @@
 package com.example.bentoyaspring.controllers
 
-import com.example.bentoyaspring.MenuItems
-import com.example.bentoyaspring.dtos.DemandRequest
-import com.example.bentoyaspring.entities.Demand
-import com.example.bentoyaspring.services.DemandService
+import com.example.bentoyaspring.dtos.StockRequest
+import com.example.bentoyaspring.services.StockService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,16 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-
 @RestController
-@RequestMapping("/demands")
-class DemandController @Autowired constructor(private val service: DemandService) {
+@RequestMapping("/stocks")
+class StockController @Autowired constructor(private val service: StockService) {
     @PostMapping
     fun create(
-            @RequestBody @Validated demands: List<DemandRequest>
-    ): ResponseEntity<*> {
+            @RequestBody @Validated stocks: List<StockRequest>
+        ): ResponseEntity<*> {
         return try {
-            service.save(demands)
+            service.save(stocks)
             ResponseEntity.status(HttpStatus.CREATED).build<Any>()
         } catch (e: Exception) {
             println(e)
