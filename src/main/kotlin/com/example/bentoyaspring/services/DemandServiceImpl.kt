@@ -23,6 +23,11 @@ class DemandServiceImpl
     override fun save(demand: List<DemandRequest>) {
         demand.forEach {
             val customer = customerRepository.findCustomerByPhone(it.phone)
+            customer?.let { ctm ->
+                if (ctm.name != it.name) {
+                    customerRepository.save(Customer(it.name, ctm.phone, ctm.id))
+                }
+            }
 
             val products = it.products.map { prod ->
                 val stock = stockRepository.findStockById(prod.item)

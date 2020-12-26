@@ -4,7 +4,7 @@ import com.sun.istack.NotNull
 
 data class StockRequest(
         @NotNull
-        val name: String,
+        val item: String,
         @NotNull
         val quantity: Int,
         val value: Double? = null,

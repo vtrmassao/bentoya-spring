@@ -2,6 +2,7 @@ package com.example.bentoyaspring.controllers
 
 import com.example.bentoyaspring.dtos.StockRequest
 import com.example.bentoyaspring.services.StockService
+import com.example.bentoyaspring.utils.itemValidation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -18,6 +19,12 @@ class StockController @Autowired constructor(private val service: StockService) 
     fun create(
             @RequestBody @Validated stocks: List<StockRequest>
         ): ResponseEntity<*> {
+        stocks.forEach {
+            if(!itemValidation(it.item)) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This item does not exist")
+            }
+        }
+
         return try {
             service.save(stocks)
             ResponseEntity.status(HttpStatus.CREATED).build<Any>()

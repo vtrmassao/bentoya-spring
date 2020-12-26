@@ -1,6 +1,5 @@
 package com.example.bentoyaspring.entities
 
-import com.example.bentoyaspring.MenuItems
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 import javax.persistence.*

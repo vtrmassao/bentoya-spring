@@ -1,0 +1,10 @@
+create table customer (id int AUTO_INCREMENT not null, name varchar(255) not null, phone varchar(255) not null, primary key (id));
+create table demand (id int AUTO_INCREMENT not null, payment_type varchar(255), customer_id int, primary key (id));
+create table demand_products (demand_id int not null, products_id int not null);
+create table product (id int AUTO_INCREMENT not null, quantity int not null, stock_id varchar(255), primary key (id));
+create table stock (id varchar(255) not null, quantity int, updated_at datetime, value double precision, primary key (id));
+alter table customer add constraint uk_phone unique (phone);
+alter table demand add constraint fk_customer foreign key (customer_id) references customer(id);
+alter table demand_products add constraint fk_product foreign key (products_id) references product(id);
+alter table demand_products add constraint fk_demand foreign key (demand_id) references demand(id);
+alter table product add constraint fk_product_stockdemand foreign key (stock_id) references stock(id);

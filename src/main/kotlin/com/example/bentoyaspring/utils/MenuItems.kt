@@ -1,4 +1,4 @@
-package com.example.bentoyaspring
+package com.example.bentoyaspring.utils
 
 enum class MenuItems {
     YAKISOBA_P,

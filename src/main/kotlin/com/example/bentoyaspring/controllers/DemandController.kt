@@ -1,9 +1,8 @@
 package com.example.bentoyaspring.controllers
 
-import com.example.bentoyaspring.MenuItems
 import com.example.bentoyaspring.dtos.DemandRequest
-import com.example.bentoyaspring.entities.Demand
 import com.example.bentoyaspring.services.DemandService
+import com.example.bentoyaspring.utils.itemValidation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -21,6 +20,14 @@ class DemandController @Autowired constructor(private val service: DemandService
     fun create(
             @RequestBody @Validated demands: List<DemandRequest>
     ): ResponseEntity<*> {
+        for (demand in demands) {
+            for (product in demand.products) {
+                if(!itemValidation(product.item)) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This item does not exist")
+                }
+            }
+        }
+
         return try {
             service.save(demands)
             ResponseEntity.status(HttpStatus.CREATED).build<Any>()

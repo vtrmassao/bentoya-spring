@@ -1,10 +1,9 @@
 spring:
   datasource:
-    url: "jdbc:h2:mem:testdb"
-    username: "sa"
-    password: ""
+    url: "jdbc:mysql://localhost:3306/bentoya?useTimezone=true&serverTimezone=UTC"
+    username: "root"
+    password: "localhost"
     initialization-mode: always
-    driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
@@ -13,3 +12,13 @@ spring:
     show-sql: true # Configuration to print the JPA query
     hibernate:
       physical-naming-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # Configuration for conversion camelCase to snake_case.
+    properties:
+      javax:
+        persistence:
+          jdbc:
+            driver: com.mysql.cj.jdbc.Driver
+#          schema-generation:
+#            scripts:
+#              action: create
+#              create-target: create.sql
+#              create-source: metadata
