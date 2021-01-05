@@ -13,5 +13,6 @@ enum class MenuItems {
     HOT_ROLL,
     BENTO_ARROZ_WAKAME,
     BENTO_ARROZ_CURRY,
-    BENTO_MACARRAO
+    BENTO_MACARRAO,
+    HOT_ROLL_CARNE
 }
