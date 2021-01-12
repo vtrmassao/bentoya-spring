@@ -11,4 +11,8 @@ data class DemandRequest(
         val paymentType: String,
         @NotNull
         val products: List<ProductRequest>,
+        @NotNull
+        val freight: Double,
+        @NotNull
+        val discount: Double
 )

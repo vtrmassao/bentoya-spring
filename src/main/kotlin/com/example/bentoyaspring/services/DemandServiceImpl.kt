@@ -41,10 +41,11 @@ class DemandServiceImpl
             var newDemand: Demand
 
             newDemand = if (customer != null) {
-                Demand(PaymentType.valueOf(it.paymentType), products, customer)
+                Demand(PaymentType.valueOf(it.paymentType), products, customer, it.freight, it.discount)
             } else {
-                Demand(PaymentType.valueOf(it.paymentType), products, Customer(it.name, it.phone))
+                Demand(PaymentType.valueOf(it.paymentType), products, Customer(it.name, it.phone), it.freight, it.discount)
             }
+
             demandRepository.save(newDemand)
         }
     }
